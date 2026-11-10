@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-
-const NAV_LINKS = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Skills', path: '/skills' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Contact', path: '/contact' },
-];
+import { navigationLinks, resumeLink } from '../../data/navigation';
 
 function Navbar({ theme, onToggleTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,7 +22,7 @@ function Navbar({ theme, onToggleTheme }) {
         {/* Desktop Navigation */}
         <nav aria-label="Main Navigation" className="hidden items-center gap-8 md:flex">
           <ul className="flex items-center gap-6">
-            {NAV_LINKS.map((link) => (
+            {navigationLinks.map((link) => (
               <li key={link.path}>
                 <NavLink
                   to={link.path}
@@ -50,7 +43,7 @@ function Navbar({ theme, onToggleTheme }) {
 
           <div className="flex items-center gap-4 border-l border-border pl-6">
             <a
-              href="/resume.pdf"
+              href={resumeLink.path}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-md border border-border bg-surface-secondary px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground transition-colors hover:border-accent hover:text-accent"
@@ -206,7 +199,7 @@ function Navbar({ theme, onToggleTheme }) {
         <div className="border-b border-border bg-surface px-4 py-4 md:hidden">
           <nav aria-label="Mobile Navigation">
             <ul className="flex flex-col space-y-3">
-              {NAV_LINKS.map((link) => (
+              {navigationLinks.map((link) => (
                 <li key={link.path}>
                   <NavLink
                     to={link.path}
@@ -226,7 +219,7 @@ function Navbar({ theme, onToggleTheme }) {
               ))}
               <li className="pt-2">
                 <a
-                  href="/resume.pdf"
+                  href={resumeLink.path}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMobileMenu}

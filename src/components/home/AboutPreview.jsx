@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { personalData } from '../../data/personal';
 
 function AboutPreview() {
   return (
@@ -13,18 +14,16 @@ function AboutPreview() {
               ABOUT ME
             </div>
             <h2 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Building digital experiences with purpose.
+              {personalData.tagline}
             </h2>
           </div>
 
           {/* Editorial Content */}
           <div className="flex flex-col justify-between space-y-6 lg:col-span-7">
             <div className="space-y-4 text-base leading-relaxed text-muted sm:text-lg">
-              <p>
-                I'm Mohsin Ali, a Full-Stack Developer and Software Engineer focused on building modern web applications, scalable backend systems, and intelligent digital solutions. I enjoy transforming ideas into practical products through clean code and thoughtful engineering.
-              </p>
+              <p>{personalData.aboutBio[0]}</p>
               <p className="border-l-2 border-accent pl-4 text-foreground/90 font-medium">
-                From frontend interfaces to backend architecture, I focus on creating solutions that are functional, maintainable, and user-centered.
+                {personalData.supportingStatement}
               </p>
             </div>
 
@@ -46,4 +45,3 @@ function AboutPreview() {
 }
 
 export default AboutPreview;
-

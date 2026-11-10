@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { personalData } from '../../data/personal';
+import Button from '../common/Button';
 
 function Hero() {
   const [imageError, setImageError] = useState(false);
@@ -14,46 +15,40 @@ function Hero() {
             {/* Intro Label */}
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-secondary px-3.5 py-1 text-xs font-semibold tracking-wider text-accent uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-              HELLO, I'M
+              {personalData.greeting}
             </div>
 
             {/* Name */}
-            <h1 className="mt-5 text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Mohsin Ali<span className="text-accent">.</span>
+            <h1 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+              {personalData.name}<span className="text-accent">.</span>
             </h1>
 
             {/* Title */}
             <p className="mt-3 text-lg font-medium text-accent sm:text-xl">
-              Full-Stack Developer & Software Engineer
+              {personalData.title}
             </p>
 
             {/* Description */}
             <p className="mt-6 max-w-2xl text-base text-muted sm:text-lg leading-relaxed">
-              I build modern web applications, scalable backend systems, and intelligent digital solutions. 
-              I enjoy turning ideas into practical products through clean code and thoughtful engineering.
+              {personalData.shortDescription}
             </p>
 
             {/* Action Buttons */}
             <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
-              <Link
-                to="/projects"
-                className="inline-flex items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
+              <Button to="/projects" variant="primary">
                 View My Projects
-              </Link>
+              </Button>
 
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center rounded-lg border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface-secondary hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
+              <Button to="/contact" variant="secondary">
                 Let's Connect
-              </Link>
+              </Button>
 
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-muted transition-colors hover:text-foreground sm:ml-2"
+              <Button
+                href={personalData.resumePath}
+                variant="ghost"
+                external
+                download
+                className="gap-2 sm:ml-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,31 +66,27 @@ function Hero() {
                   <line x1="12" x2="12" y1="15" y2="3" />
                 </svg>
                 Download Resume
-              </a>
+              </Button>
             </div>
           </div>
 
           {/* Right Column: Portrait Area / Future 3D Spline Scene Container */}
           <div className="w-full lg:col-span-5">
-            {/* 
-              Visual Slot:
-              This container is engineered so a future Spline 3D canvas or component
-              can directly replace the image element inside without requiring any restructuring
-              of the Hero layout or surrounding grid.
-            */}
             <div
               id="hero-visual-container"
               className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-border bg-surface-secondary shadow-sm sm:max-w-md lg:max-w-none"
             >
               {!imageError ? (
                 <img
-                  src="/images/profile-placeholder.png"
-                  alt="Mohsin Ali - Full-Stack Developer"
+                  src={personalData.profileImagePath}
+                  alt={`${personalData.name} - ${personalData.title}`}
+                  loading="eager"
+                  width="480"
+                  height="600"
                   onError={() => setImageError(true)}
                   className="h-full w-full object-cover object-center transition-opacity duration-300"
                 />
               ) : (
-                /* Neutral elegant temporary placeholder if the image does not exist yet */
                 <div
                   className="flex h-full w-full flex-col items-center justify-center p-8 text-center"
                   aria-label="Portrait Placeholder"
@@ -134,4 +125,3 @@ function Hero() {
 }
 
 export default Hero;
-

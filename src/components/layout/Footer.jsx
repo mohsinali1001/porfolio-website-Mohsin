@@ -1,12 +1,7 @@
 import { Link } from 'react-router-dom';
-
-const QUICK_LINKS = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Skills', path: '/skills' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Contact', path: '/contact' },
-];
+import { navigationLinks } from '../../data/navigation';
+import { socialLinks } from '../../data/socialLinks';
+import SocialLinks from '../common/SocialLinks';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -34,7 +29,7 @@ function Footer() {
               Navigation
             </h2>
             <ul className="mt-3 space-y-2">
-              {QUICK_LINKS.map((link) => (
+              {navigationLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
@@ -52,39 +47,9 @@ function Footer() {
             <h2 className="text-xs font-semibold uppercase tracking-wider text-foreground">
               Connect
             </h2>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <a
-                  href="https://github.com/mohsinali1001"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-foreground"
-                >
-                  GitHub
-                  <span aria-hidden="true" className="text-xs">↗</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-foreground"
-                >
-                  LinkedIn (Placeholder)
-                  <span aria-hidden="true" className="text-xs">↗</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:contact@mohsinali.dev"
-                  className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-foreground"
-                >
-                  Email (Placeholder)
-                  <span aria-hidden="true" className="text-xs">↗</span>
-                </a>
-              </li>
-            </ul>
+            <div className="mt-3">
+              <SocialLinks links={socialLinks} variant="list" />
+            </div>
           </div>
         </div>
 
